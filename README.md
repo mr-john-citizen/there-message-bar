@@ -1,5 +1,5 @@
 # There.com Message Bar mod
-There.com Message Bar mod adds the functionality of the "bedican compass" commands into the message bar using Javascript instead of Adobe Flash (EOL in 2020). All you need is a text editor to make your own changes!
+There.com Message Bar mod adds the functionality of the "bedican compass" commands into the message bar using Javascript instead of Adobe Flash (RIP). All you need is a text editor to make your own changes!
 
 ## Install
 
@@ -69,3 +69,75 @@ There.com Message Bar mod adds the functionality of the "bedican compass" comman
 | /youtube {{topic}}<br>/yt {{topic}}  | Search youtube for topic |
 | /emotes<br>/emotes {{username}} | Parrot username's emote actions |
 | /exit | Exit There |
+| /logout<br>bye | Log out |
+| settings | Show settings window |
+| vol<br>volume<br>aj | Show volume window |
+| chatgroup | Enable auto-join chat group |
+| tags<br>names | Show name tags |
+| notags<br>nonames | Hide name tags |
+| labels | Show object labels |
+| nolabels | Hide object labels |
+| speech | Show speech bubble |
+| nospeech | Hide speech bubble |
+| fps | Show FPS |
+| nofps | Hide FPS |
+| show | Show HUD |
+| hide | Hide HUD |
+| zoneson<br>zon<br>z | Show zone boundries |
+| zonesoff<br>zoff<br>zo | Hide zone boundries |
+| colview | Show collisions |
+| nocolview | Hide collisions |
+| cm<br>changeme<br>wear | Show Change Me window |
+
+
+## Code docs / Making your own changes:
+
+### Function `onChatBubbleSuccess(xml)`
+
+Processes chat bubble data:
+
+- Determines if text is a command `/...`, or
+- Determines if text is a link `http...`, or
+- Determines if text is an emote `'...`
+
+
+### Function `processChatBubbleCmd(words, author)`
+
+Determines the command and carries out an action.
+
+This is where you'd add/remove commands!
+
+
+### Function `sendChatBubble(msg)`
+
+Sends given text as chat bubble.
+
+
+### Function `sendGuiCommand(command, args)`
+
+Sends GUI command, eg: open various windows.
+
+
+### Function `sendHookCommand(hook)`
+
+Sends hook command, typically a menu-item request.
+
+
+### Function `avieLookup(name)`
+
+Fetches user ID from given name.
+
+
+### Function `sendVariableCmd`
+
+Sets game variable, eg: toggle zone boundries.
+
+
+### Function `fetchChatBubbleXml()`
+
+Fetches chat bubble data, every 250ms.
+
+
+### Other functions
+
+All the other functions are for the orginial message bar behaviour. Modify at your own peril!

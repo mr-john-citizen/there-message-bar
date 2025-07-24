@@ -811,7 +811,7 @@ There.init({
 
 			case '/help':
 			case '/?':
-				if (author == There.data.cache.pilotName.toLowerCase()) There.fsCommand('browser', 'http://www.bedican.co.uk/apps/compass/help.html');
+				if (author == There.data.cache.pilotName.toLowerCase()) There.fsCommand('browser', 'https://github.com/mr-john-citizen/there-message-bar');
 				break;
 
 
@@ -1122,6 +1122,114 @@ There.init({
 			case '/exit':
 				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Exit/activate');
 				break;
+
+
+			case '/logout':
+			case '/bye':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Logout/activate');
+				break;
+
+
+			case '/settings':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Settings/activate');
+				break;
+
+
+			case '/vol':
+			case '/volume':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Customize/World/Volume/activate');
+				break;
+
+
+			case '/aj':
+			case '/chatgroup':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Customize/World/Auto-Join Chat Groups/activate');
+				break;
+
+
+			case '/tags':
+			case '/names':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Customize/World/Nametags/Show all visible/activate');
+				break;
+
+
+			case '/notags':
+			case '/nonames':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/There/Customize/World/Nametags/Show none/activate');
+				break;
+
+
+			case '/labels':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('showObjectLabels', 1);
+				break;
+
+
+			case '/nolabels':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('showObjectLabels', 0);
+				break;
+
+
+			case '/speech':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('hideSpeech', 0);
+				break;
+
+
+			case '/nospeech':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('hideSpeech', 1);
+				break;
+
+
+			case '/fps':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('flipHud', 1);
+				break;
+
+
+			case '/nofps':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('flipHud', 0);
+				break;
+
+
+			case '/show':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('noRenderHud', 0);
+				break;
+
+
+			case '/hide':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('noRenderHud', 1);
+				break;
+
+
+			case '/zoneson':
+			case '/zon':
+			case '/z':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('showOtherZones', 1);
+				break;
+
+			case '/zonesoff':
+			case '/zoff':
+			case '/zo':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('showOtherZones', 0);
+				break;
+
+
+			case '/colview':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('colView', 1);
+				break;
+
+
+			case '/nocolview':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendVariableCmd('colView', 0);
+				break;
+
+
+			case '/cm':
+			case '/changeme':
+			case '/wear':
+				if (author == There.data.cache.pilotName.toLowerCase()) There.sendHookCommand('/mainMenu/My Things/ChangeMe/activate');
+				break;
+
+
+
 		}
 	},
 
@@ -1187,7 +1295,7 @@ There.init({
 	 * @author johnCitizen
 	 * @description Avie name lookup
 	 * @param {string} name
-	 * @returns {string} Doid
+	 * @returns {Promise<string>} Doid
 	 */
 	avieLookup: async function(name)
 	{
@@ -1208,6 +1316,29 @@ There.init({
 				},
 				'error': reject,
 			});
+		});
+	},
+
+
+
+	/**
+	 * @author johnCitizen
+	 * @description Set variable
+	 * @param {string} key
+	 * @param {any} value
+	 * @returns {void}
+	 */
+	sendVariableCmd: function(key, value)
+	{
+		let query = {
+			'variable': key,
+			'value': value,
+			'modify': '',
+		};
+
+		There.fetch({
+			'path': '/environment/top',
+			'query': query,
 		});
 	}
 });
