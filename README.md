@@ -70,24 +70,24 @@ There.com Message Bar mod adds the functionality of the "bedican compass" comman
 | /emotes<br>/emotes {{username}} | Parrot username's emote actions |
 | /exit | Exit There |
 | /logout<br>bye | Log out |
-| settings | Show settings window |
-| vol<br>volume<br>aj | Show volume window |
-| chatgroup | Enable auto-join chat group |
-| tags<br>names | Show name tags |
-| notags<br>nonames | Hide name tags |
-| labels | Show object labels |
-| nolabels | Hide object labels |
-| speech | Show speech bubble |
-| nospeech | Hide speech bubble |
-| fps | Show FPS |
-| nofps | Hide FPS |
-| show | Show HUD |
-| hide | Hide HUD |
-| zoneson<br>zon<br>z | Show zone boundries |
-| zonesoff<br>zoff<br>zo | Hide zone boundries |
-| colview | Show collisions |
-| nocolview | Hide collisions |
-| cm<br>changeme<br>wear | Show Change Me window |
+| /settings | Show settings window |
+| /vol<br>/volume<br>/aj | Show volume window |
+| /chatgroup | Enable auto-join chat group |
+| /tags<br>/names | Show name tags |
+| /notags<br>/nonames | Hide name tags |
+| /labels | Show object labels |
+| /nolabels | Hide object labels |
+| /speech | Show speech bubble |
+| /nospeech | Hide speech bubble |
+| /fps | Show FPS |
+| /nofps | Hide FPS |
+| /show | Show HUD |
+| /hide | Hide HUD |
+| /zoneson<br>/zon<br>/z | Show zone boundries |
+| /zonesoff<br>/zoff<br>/zo | Hide zone boundries |
+| /colview | Show collisions |
+| /nocolview | Hide collisions |
+| /cm<br>/changeme<br>/wear | Show Change Me window |
 
 
 ## Code docs / Making your own changes:
