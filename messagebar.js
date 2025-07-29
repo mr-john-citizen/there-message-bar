@@ -3,7 +3,7 @@ There.init({
 		messages: [],
 		saved: [],
 		cache: {
-			version: '1.0.0',
+			version: '1.1.1',
 			months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
 			days: ['Sun', 'Mon', 'Tues', 'Weds', 'Thurs', 'Fri', 'Sat'],
 		},
@@ -1033,8 +1033,7 @@ There.init({
 			case '/tp':
 				if (author != There.data.cache.pilotName.toLowerCase()) break;
 				if (words.length == 0) There.fsCommand('browser', 'https://webapps.prod.there.com/places/places?count=100');
-				if (words.length == 1 && words[0].substring(0, 1) == '#') There.avieLookup(words[0].substring(1, words[0].length)).then((doid) => There.fsCommand('browser', `https://webapps.prod.there.com/goto/goto?obj=${doid}`));
-				if (words.length >= 1 && words[0].substring(0, 1) != '#') There.fsCommand('browser', `https://webapps.prod.there.com/goto/goto?placename=${words.join('+')}`);
+				if (words.length > 0) There.sendTeleportCommand(words);
 				break;
 
 
@@ -1340,7 +1339,39 @@ There.init({
 			'path': '/environment/top',
 			'query': query,
 		});
-	}
+	},
+
+
+	/**
+	 * @author johnCitizen
+	 * @description Attempt teleport
+	 * @param {string[]} words
+	 * @returns {void}
+	 */
+	sendTeleportCommand: function(words)
+	{
+		let url = 'https://webapps.prod.there.com/goto/goto';
+
+		// Object ID
+		if (words.length == 1 && words[0].substring(0, 1) == '#')
+		{
+			url += `?obj=${words[0]}`;
+		}
+		// Location name
+		else
+		{
+			// Capitalize each first letter
+			words = words.map(word =>
+			{
+				if (word.length === 0) return '';
+				return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+			});
+
+			url += `?placename=${words.join('+')}`;
+		}
+
+		There.fsCommand('browser', url);
+	},
 });
 
 
